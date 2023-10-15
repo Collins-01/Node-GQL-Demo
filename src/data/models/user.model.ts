@@ -17,11 +17,6 @@ export class User {
   @Column()
   email!: string;
 
-  constructor() {
-    // this.firstName = "";
-    // this.lastName = "";
-    // this.email = "";
-    // this.id = 0;
-  }
+ 
 }
-// npx typeorm init --name node-gql-demo --database postgres
+
