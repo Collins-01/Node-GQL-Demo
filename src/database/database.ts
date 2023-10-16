@@ -1,17 +1,23 @@
 import { DataSource } from "typeorm";
+import { Config } from "../utils";
 
 export class Database {
-  private appDataSource = new DataSource({
-    type: "mysql",
-    host: "localhost",
-    port: 3306,
-    username: "test",
-    password: "test",
-    database: "test",
-  });
+  constructor(config: Config) {
+    this.config = config;
+    this.appDataSource = new DataSource({
+      type: "postgres",
+      host: this.config.HOST,
+      port: 3306,
+      username: this.config.USERNAME,
+      password: this.config.PASSWORD,
+      database: this.config.DATABASE,
+    });
+  }
+  private config: Config;
+  private appDataSource: DataSource;
 
-  initialize = () => {
-    this.appDataSource
+  initialize = async () => {
+    await this.appDataSource
       .initialize()
       .then(() => {
         console.log(`Database initialized succssfully`);

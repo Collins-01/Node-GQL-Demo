@@ -1,5 +1,8 @@
-export class AuthResolver{
-    login = () => {};
+import { AuthService } from "./auth.service";
 
-    register = () => {};
+export class AuthResolver {
+    private authService = new AuthService();
+  login = () => {};
+
+  register = () => {};
 }
