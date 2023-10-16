@@ -13,4 +13,10 @@ export class UserRepository {
   getUserByEmail = async (email: string): Promise<User | null> => {
     return null;
   };
+
+  createUser = async (dto: any): Promise<User> => {
+    const data = this.repository.create(dto);
+    const user = await this.repository.save(data);
+    return user[0];
+  };
 }
