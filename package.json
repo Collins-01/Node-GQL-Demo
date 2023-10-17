@@ -18,8 +18,10 @@
     "graphql": "^15.8.0",
     "graphql-tools": "^9.0.0",
     "pg": "^8.11.3",
+    "pg-hstore": "^2.3.4",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.3.17"
+    "sequelize": "^6.33.0"
+    
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",

@@ -1,37 +1,33 @@
-import { DataSource } from "typeorm";
+
 import { Config } from "../utils";
+import { Sequelize } from "sequelize";
+
 
 export class Database {
+  config: Config;
   constructor(config: Config) {
-    console.log(`Database name: ${config.DATABASE}`);
-    // this.appDataSource = new DataSource({
-    //   type: "postgres",
-    //   host: config.HOST,
-    //   port: 5432,
-    //   username: config.USERNAME,
-    //   password: config.PASSWORD,
-    //   database: config.DATABASE,
-    // });
+    this.config = config;
   }
 
-  // private appDataSource: DataSource;
-
   initialize = async () => {
-    const appDataSource = new DataSource({
-      type: "postgres",
-      host: "localhost",
-      port: 5432,
-      username: "admin",
-      password: "test1234",
-      database: "gql-demo",
-    });
-    await appDataSource
-      .initialize()
-      .then(() => {
-        console.log(`Database initialized succssfully`);
-      })
-      .catch((err) => {
-        console.log(`Failed to initialize database: ${err}`);
-      });
+    console.log(`Database name: ${this.config.DATABASE}`);
+    const sequelize = new Sequelize(
+      // `postgres://${this.config.USERNAME}:${this.config.PASSWORD}:5432/${this.config.DATABASE}`
+      {
+        database: this.config.DATABASE,
+        dialect: "postgres",
+        password: this.config.PASSWORD,
+        username: this.config.USERNAME,
+        host: this.config.HOST,
+        port: 5432,
+      }
+    ); // Example for postgres
+
+    try {
+      await sequelize.authenticate();
+      console.log("Connection has been established successfully.");
+    } catch (error) {
+      console.error("Unable to connect to the database:", error);
+    }
   };
 }

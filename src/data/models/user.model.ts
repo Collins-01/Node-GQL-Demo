@@ -1,25 +1,22 @@
 // src/entities/User.ts
 
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+// import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import "reflect-metadata";
 
-@Entity()
+// @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
+  // @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column()
+  // @Column()
   firstName!: string;
 
-  @Column()
+  // @Column()
   lastName!: string;
 
-  @Column()
+  // @Column()
   email!: string;
 
-  @Column()
+  // @Column()
   password!: string;
-
- 
 }
-
