@@ -3,21 +3,29 @@ import { Config } from "../utils";
 
 export class Database {
   constructor(config: Config) {
-    this.config = config;
-    this.appDataSource = new DataSource({
-      type: "postgres",
-      host: this.config.HOST,
-      port: 3306,
-      username: this.config.USERNAME,
-      password: this.config.PASSWORD,
-      database: this.config.DATABASE,
-    });
+    console.log(`Database name: ${config.DATABASE}`);
+    // this.appDataSource = new DataSource({
+    //   type: "postgres",
+    //   host: config.HOST,
+    //   port: 5432,
+    //   username: config.USERNAME,
+    //   password: config.PASSWORD,
+    //   database: config.DATABASE,
+    // });
   }
-  private config: Config;
-  private appDataSource: DataSource;
+
+  // private appDataSource: DataSource;
 
   initialize = async () => {
-    await this.appDataSource
+    const appDataSource = new DataSource({
+      type: "postgres",
+      host: "localhost",
+      port: 5432,
+      username: "admin",
+      password: "test1234",
+      database: "gql-demo",
+    });
+    await appDataSource
       .initialize()
       .then(() => {
         console.log(`Database initialized succssfully`);
